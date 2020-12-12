@@ -28,6 +28,7 @@ const ThoughtController = {
         Thought.create(body)
             // Have the sent data be first pushed into User model thoughts field array
             .then(({ _id }) => {
+                // When passing in the body make sure to add in the actual user ID as a field in the json object sent to ensure that it is referencing back to the User
                 return User.findOneAndUpdate({ _id: body.userId }, { $push: { thoughts: _id } }, { new: true });
             })
             // Once this is done then send the JSON data to affirm and place data in database

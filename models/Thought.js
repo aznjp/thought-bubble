@@ -1,4 +1,5 @@
 const { Schema, model, Types } = require('mongoose');
+// Types must be added to set the default value to a new objectID
 const dateFormat = require('../utils/dateFormat');
 
 // moved in reaction schema into thought models to simplify format because it will only be utilized in reactions field array in thought schema
@@ -20,6 +21,7 @@ const ReactionSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now,
+        // utilizes get function (in this case the dateFormat Util) to get value back reformatted
         get: createdAtVal => dateFormat(createdAtVal)
     },
 }, {
@@ -38,7 +40,6 @@ const ThoughtSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-        // utilizes get function (in this case the dateFormat Util) to get value back reformatted
         get: createdAtVal => dateFormat(createdAtVal)
     },
     username: {
@@ -55,8 +56,6 @@ const ThoughtSchema = new Schema({
     },
     id: false
 });
-
-
 
 // get total count of reactions and replies on retrieval on THOUGHT-schema attribute
 ThoughtSchema.virtual('reactionCount').get(function() {

@@ -20,6 +20,8 @@ router
     .put(updateUser)
     .delete(deleteUser);
 
+// /api/users/:id/friends/:friendId
+// These methods will reference back to the friends array values which will self reference the User model
 router
     .route('/:id/friends/:friendId')
     .post()
