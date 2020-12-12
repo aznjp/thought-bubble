@@ -12,7 +12,7 @@ const UserSchema = new Schema({
         unique: true,
         required: "Password is required",
         trim: true,
-        match: '^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
+        match: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
     },
     thoughts: [{
         type: Schema.Types.ObjectId,
