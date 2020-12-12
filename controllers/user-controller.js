@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Thought } = require('../models');
 
 const UserController = {
     // get all Users
@@ -68,7 +68,13 @@ const UserController = {
                     res.status(404).json({ message: 'No User found with this id!' });
                     return;
                 }
-                res.json(dbUserData);
+                /* Once it checks to ensure this user exists it will then delete every thought associated to the user though the _id's shown in the thoughts field array
+                by using the $in function for mongodb (https://docs.mongodb.com/manual/reference/operator/query/in/) which will search and match all values it finds in the array.
+                The deleteMany method will then delete all thoughts that match the id's found and matched in the array*/
+                return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } })
+            })
+            .then(() => {
+                res.json({ message: "User and all thoughts associated have been deleted" })
             })
             .catch(err => res.json(err));
     },
