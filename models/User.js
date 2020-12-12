@@ -12,6 +12,7 @@ const UserSchema = new Schema({
         unique: true,
         required: "Password is required",
         trim: true,
+        // The match is not required to be in string when using the regex pattern
         match: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
     },
     thoughts: [{
