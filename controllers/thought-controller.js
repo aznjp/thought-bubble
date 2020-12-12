@@ -73,7 +73,34 @@ const ThoughtController = {
             .catch(err => {
                 res.sendStatus(400).json(err);
             });
-    }
+    },
+    newReaction({ params, body }, res) {
+        // this will be using the initial params to find the initial userId and then push in the new JSON body into the reaction field array
+        // use push because reactions can have multiple of the same reactions
+        Thought.findByIdAndUpdate({ _id: params.id }, { $push: { reactions: body } }, { new: true })
+            .select("-__v")
+            .then(dbThoughtData => {
+                if (!dbThoughtData) {
+                    res.status(404).json({ message: 'No Thought found with this id!' });
+                    return;
+                }
+                res.json(dbThoughtData);
+            })
+            .catch(err => res.json(err));
+    },
+    deleteReaction({ params }, res) {
+        // this will be using the initial params to find the initial userId and then pull the reaction from the field array using the reactionId made
+        Thought.findByIdAndUpdate({ _id: params.id }, { $pull: { reactions: { reactionId: params.reactionId } } }, { new: true, runValidators: true })
+            .select("-__v")
+            .then(dbThoughtData => {
+                if (!dbThoughtData) {
+                    res.status(404).json({ message: 'No Thought found with this id!' });
+                    return;
+                }
+                res.json(dbThoughtData);
+            })
+            .catch(err => res.json(err));
+    },
 };
 
 module.exports = ThoughtController;

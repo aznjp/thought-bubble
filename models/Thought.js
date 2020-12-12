@@ -4,6 +4,8 @@ const dateFormat = require('../utils/dateFormat');
 
 // moved in reaction schema into thought models to simplify format because it will only be utilized in reactions field array in thought schema
 // also must be first or else there is no reference for the thought schema
+/* The default value is useful because it will add in a new objectId every time you create it so that it does not need to be added every time 
+and there are no reactions with the same id to check*/
 const ReactionSchema = new Schema({
     reactionId: {
         type: Schema.Types.ObjectId,
