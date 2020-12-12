@@ -44,7 +44,7 @@ const ThoughtController = {
             });
     },
     updateThought({ params, body }, res) {
-        // Find the data through params and then send the body to the database
+        // Find the data through params and then send the body to the database to update the original thought
         Thought.findOneAndUpdate({ _id: params.id }, body, {
                 new: true,
                 runValidators: true

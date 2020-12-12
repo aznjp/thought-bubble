@@ -90,7 +90,7 @@ const UserController = {
 
     deleteFriend({ params }, res) {
         // this will do the same thing the previous route for newFriends does but will pull the info from the field array and pulls it
-        // NOTE YOU DONT USE A DELETE FUNCTION BECAUSE YOU ARENT REMOVING THE INFORMATION FROM THE DATABASE ITSELF BUT RATHER JUST PULLING THE ID OUT OF THE FIELD ARRAY
+        // NOTE YOU DONT USE A DELETE FUNCTION BECAUSE YOU ARENT REMOVING THE INFORMATION FROM THE DATABASE ITSELF BUT RATHER JUST PULLING THE ID OUT OF THE FIELD ARRAY AND REMOVING THAT RELATION
         User.findByIdAndUpdate({ _id: params.id }, { $pull: { friends: params.friendId } }, { new: true })
             .select("-__v")
             .then(dbUserData => {
