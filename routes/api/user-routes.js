@@ -5,6 +5,8 @@ const {
     createUser,
     updateUser,
     deleteUser,
+    newFriend,
+    deleteFriend
 } = require('../../controllers/user-controller');
 
 // /api/users
@@ -24,7 +26,7 @@ router
 // These methods will reference back to the friends array values which will self reference the User model
 router
     .route('/:id/friends/:friendId')
-    .post()
-    .delete();
+    .post(newFriend)
+    .delete(deleteFriend);
 
 module.exports = router;
