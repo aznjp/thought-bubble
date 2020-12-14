@@ -35,8 +35,9 @@ You can install MongoDB [here](https://www.mongodb.com/try/download/community)
 ## Usage
 To understand how to checkout how this application look at the walkthrough videos shown below:
 
-![Part 1](https://youtu.be/YTaR9xLnRk8)
-![Part 2](https://youtu.be/DhCJ7UNG1d8)
+[Part 1](https://youtu.be/YTaR9xLnRk8)
+
+[Part 2](https://youtu.be/DhCJ7UNG1d8)
 
 ## License
 MIT  
